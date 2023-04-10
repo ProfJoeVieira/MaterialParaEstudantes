@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Verificador de anos bissextos</title>
+  </head>
+  <body>
+    <h1>Verificador de anos bissextos</h1>
+    <p>Informe o número de anos para verificar:</p>
+    <input type="number" id="anos">
+    <button onclick="verificarBissextos()">Verificar</button>
+    <div id="resultado"></div>
+    <script>
+     function verificarBissextos() {
+  // Pede ao usuário um número em anos
+  const anos = parseInt(document.getElementById("anos").value);
+
+  // Obtém o ano atual
+  const anoAtual = new Date().getFullYear();
+
+  // Inicializa o contador de anos bissextos
+  let contadorBissextos = 0;
+
+  // Inicia o array de anos bissextos
+  let anosBissextos = [];
+
+  // Inicia o loop de anos
+  for (let i = anoAtual; i < anoAtual + anos; i++) {
+    // Verifica se o ano atual é bissexto
+    if (i % 4 === 0 && (i % 100 !== 0 || i % 400 === 0)) {
+      // Se for bissexto, incrementa o contador e adiciona ao array
+      contadorBissextos++;
+      anosBissextos.push(i);
+    }
+  }
+
+  // Exibe o resultado na tela
+  const resultado = document.getElementById("resultado");
+  resultado.innerHTML = `No intervalo de ${anos} anos a partir de ${anoAtual}, teremos ${contadorBissextos} anos bissextos: ${anosBissextos.join(', ')}.`;
+}
+
+    </script>
+  </body>
+</html>
